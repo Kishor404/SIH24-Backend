@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'product',
     'bids',
     'trucks',
-    'drivers'
+    'drivers',
+    'routes',
 ]
 
 MIDDLEWARE = [

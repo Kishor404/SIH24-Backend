@@ -7,4 +7,5 @@ urlpatterns = [
     path('api/', include('product.urls')),  
     path('api/', include('bids.urls')),  
     path('api/', include('drivers.urls')),  
+    path('api/', include('routes.urls')),  
 ]
