@@ -27,6 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# settings.py
+OPENROUTE_API_KEY = "5b3ce3597851110001cf62487243b358f4c9427986c9ac997c5c079c"
 
 # Application definition
 
@@ -44,6 +46,7 @@ INSTALLED_APPS = [
     'trucks',
     'drivers',
     'routes',
+    'openroute',
 ]
 
 MIDDLEWARE = [

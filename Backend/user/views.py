@@ -5,21 +5,13 @@ from rest_framework import status
 from .models import User
 from .serializers import UserSerializer
 
-@api_view(['GET', 'POST'])
+@api_view(['GET'])
 def log(request):
     if request.method == 'GET':
         # Handle GET request: return all products
         users = User.objects.all()
         serializer = UserSerializer(users, many=True)
         return Response(serializer.data)
-
-    elif request.method == 'POST':
-        # Handle POST request: create a new product
-        serializer = UserSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)  # Created successfully
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)  # Bad request if validation fails
 
 @api_view(['DELETE', 'PATCH'])
 def log_item(request, id):
@@ -40,3 +32,30 @@ def log_item(request, id):
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+# ========== LOGIN ============
+
+@api_view(['POST'])
+def login(request):
+    phone=request.data.get('phone')
+    password=request.data.get('password')
+    try:
+        user = User.objects.get(phone=phone)
+    except User.DoesNotExist:
+        return Response({"error": "Phone number not found",'login':0}, status=status.HTTP_404_NOT_FOUND)
+
+    if user.password == password:
+        return Response({"message": "Login successful",'login':1}, status=status.HTTP_200_OK)
+    else:
+        return Response({"error": "Invalid password",'login':0}, status=status.HTTP_401_UNAUTHORIZED)
+    
+# ========== SIGNUP ============
+
+@api_view(['POST'])
+def signup(request):
+    serializer = UserSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+  
