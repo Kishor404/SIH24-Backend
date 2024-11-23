@@ -21,9 +21,8 @@ def log_item(request, id):
         return Response({'error': 'Product not found'}, status=status.HTTP_404_NOT_FOUND)
 
     if request.method == 'DELETE':
-        # Handle DELETE request: delete a product by ID
         user.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)  # No content to return after deletion
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
     elif request.method == 'PATCH':
         # Handle PATCH request: partially update a product by ID

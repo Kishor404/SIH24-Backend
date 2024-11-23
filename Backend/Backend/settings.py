@@ -47,6 +47,8 @@ INSTALLED_APPS = [
     'drivers',
     'routes',
     'openroute',
+    'functions',
+    'device',
 ]
 
 MIDDLEWARE = [

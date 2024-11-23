@@ -9,4 +9,6 @@ urlpatterns = [
     path('api/', include('bids.urls')),  
     path('api/', include('drivers.urls')),  
     path('api/', include('routes.urls')),  
+    path('api/', include('device.urls')),  
+    path('api/', include('functions.urls')),  
 ]

@@ -6,3 +6,4 @@ class Product(models.Model):
     quality = models.IntegerField(blank=False,default=10)
     seller_id = models.CharField(max_length=200, blank=False)
     quantity = models.CharField(max_length=200, blank=False)
+    device_id= models.CharField(max_length=200, blank=False)
